@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Firdaus Al Khairat, ST - Pelatih Marching Band & Drumband Nasional</title>
+    <meta name="theme-color" content="#0b1329">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Firdaus Portfolio">
+    <link rel="apple-touch-icon" id="pwa-apple-icon" href="">
+    <link rel="icon" type="image/svg+xml" id="pwa-favicon" href="">
+    <link rel="manifest" id="pwa-manifest" href="">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -726,8 +733,69 @@
     </div>
 
     <script>
+        // PWA Single-File Configuration
+        (function() {
+            const iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" fill="#0b1329" rx="32"/><circle cx="96" cy="96" r="60" fill="#16a34a"/><text x="96" y="115" font-size="56" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">FA</text></svg>`;
+            const iconDataUri = 'data:image/svg+xml;base64,' + btoa(iconSvg);
+
+            document.getElementById('pwa-apple-icon').href = iconDataUri;
+            document.getElementById('pwa-favicon').href = iconDataUri;
+
+            const manifest = {
+                name: "Firdaus Al Khairat, ST - Pelatih Marching Band & Drumband Nasional",
+                short_name: "Firdaus Portfolio",
+                description: "Portfolio pelatih marching band nasional",
+                start_url: ".",
+                display: "standalone",
+                background_color: "#0b1329",
+                theme_color: "#0b1329",
+                orientation: "portrait",
+                icons: [
+                    { src: iconDataUri, sizes: "192x192", type: "image/svg+xml", purpose: "any maskable" },
+                    { src: iconDataUri, sizes: "512x512", type: "image/svg+xml", purpose: "any maskable" }
+                ]
+            };
+
+            const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+            const manifestUrl = URL.createObjectURL(manifestBlob);
+            document.getElementById('pwa-manifest').href = manifestUrl;
+
+            // Service Worker Registration (Best-effort for single-file deployment)
+            if ('serviceWorker' in navigator) {
+                const swCode = `
+                    const CACHE_NAME = 'firdaus-portfolio-v1';
+                    self.addEventListener('install', event => {
+                        self.skipWaiting();
+                        event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(['./']).catch(() => {})));
+                    });
+                    self.addEventListener('activate', event => { event.waitUntil(self.clients.claim()); });
+                    self.addEventListener('fetch', event => {
+                        if (event.request.mode === 'navigate') {
+                            event.respondWith(fetch(event.request).catch(() => caches.match('./')));
+                        } else {
+                            event.respondWith(caches.match(event.request).then(r => r || fetch(event.request)));
+                        }
+                    });
+                `;
+                const swBlob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(swBlob);
+
+                navigator.serviceWorker.register(swUrl, { scope: './' })
+                    .then(() => console.log('[PWA] Service Worker registered'))
+                    .catch(err => console.warn('[PWA] Service Worker registration failed (expected for blob URLs in some browsers):', err));
+            }
+
+            // Install prompt handler
+            let deferredPrompt;
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                console.log('[PWA] App is installable');
+            });
+        })();
+    </script>
+    <script>
         // KONFIGURASI APLIKASI
-        // UBAH IS_PREVIEW KE false JIKA AKAN DI-DEPLOY KE BLOGGER
         const IS_PREVIEW = false; // Set default true untuk Canvas
         const GAS_URL = "https://script.google.com/macros/s/AKfycbxpL1_NzxxO812OuXn3CjQr3Wg3Hv5yykybCiiJd7ciRKP6MulJBlA_dmPg23YxaxgE3g/exec";
 
