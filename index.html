@@ -551,9 +551,6 @@
             </div>
 
             <div class="flex items-center gap-4">
-                <span id="preview-mode-badge" class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-bold">
-                    Mode Preview Active
-                </span>
                 <button onclick="closeAdminDashboard()" class="px-4 py-2 rounded-lg bg-rose-600/80 hover:bg-rose-600 text-white text-xs font-bold transition-all flex items-center gap-2">
                     <i class="fa-solid fa-right-from-bracket"></i> Keluar Dashboard
                 </button>
@@ -1164,7 +1161,10 @@
                         <h4 class="text-xs font-bold text-white">${item.cert_name}</h4>
                         <p class="text-[11px] text-slate-400">No: ${item.cert_number} | ${item.issuer}</p>
                     </div>
-                    <button onclick="deleteCertItem('${item.id}')" class="text-rose-400 text-xs font-bold">Hapus</button>
+                    <div class="flex gap-3">
+                        <button onclick="editCertItem('${item.id}')" class="text-amber-400 text-xs font-bold">Edit</button>
+                        <button onclick="deleteCertItem('${item.id}')" class="text-rose-400 text-xs font-bold">Hapus</button>
+                    </div>
                 </div>
             `).join('');
 
@@ -1299,15 +1299,17 @@
             }
         }
 
-        function openCertFormModal() {
-            openCrudModal('Tambah Sertifikat', [
-                { label: 'Nama Sertifikat', name: 'cert_name', value: '' },
-                { label: 'Penerbit', name: 'issuer', value: 'PDBI' },
-                { label: 'Nomor Sertifikat', name: 'cert_number', value: '' },
-                { label: 'Tanggal / Periode', name: 'date', value: '' },
-                { label: 'Pilih & Upload Foto Sertifikat', name: 'image_url', type: 'image_upload', value: '' }
-            ], 'saveCert');
+        function openCertFormModal(id = null) {
+            const item = id ? appState.certificates.find(x => x.id === id) : null;
+            openCrudModal(id ? 'Edit Sertifikat' : 'Tambah Sertifikat', [
+                { label: 'Nama Sertifikat', name: 'cert_name', value: item ? item.cert_name : '' },
+                { label: 'Penerbit', name: 'issuer', value: item ? item.issuer : 'PDBI' },
+                { label: 'Nomor Sertifikat', name: 'cert_number', value: item ? item.cert_number : '' },
+                { label: 'Tanggal / Periode', name: 'date', type: 'date', value: item ? item.date : '' },
+                { label: 'Pilih & Upload Foto Sertifikat', name: 'image_url', type: 'image_upload', value: item ? item.image_url : '' }
+            ], 'saveCert', id);
         }
+        function editCertItem(id) { openCertFormModal(id); }
         function deleteCertItem(id) {
             if(confirm("Hapus sertifikat ini?")) {
                 appState.certificates = appState.certificates.filter(x => x.id !== id);
@@ -1385,14 +1387,19 @@
                 });
             } else if(currentCrudType === 'saveCert') {
                 const data = {
-                    id: 'cert-' + Date.now(),
+                    id: currentEditingId || ('cert-' + Date.now()),
                     cert_name: document.getElementById('inp-cert_name').value,
                     issuer: document.getElementById('inp-issuer').value,
                     cert_number: document.getElementById('inp-cert_number').value,
                     date: document.getElementById('inp-date').value,
                     image_url: document.getElementById('inp-image_url').value
                 };
-                appState.certificates.push(data);
+                if(currentEditingId) {
+                    const idx = appState.certificates.findIndex(x => x.id === currentEditingId);
+                    if(idx !== -1) appState.certificates[idx] = data;
+                } else {
+                    appState.certificates.push(data);
+                }
                 syncDataToBackend('saveCertificate', data, () => {
                     renderAllData();
                     renderAdminLists();
