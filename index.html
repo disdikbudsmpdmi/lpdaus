@@ -520,8 +520,7 @@
             </form>
 
             <div class="text-center pt-2 text-[11px] text-slate-500">
-                <span>Mode Preview Login: </span>
-                <span class="text-brand-500 font-mono">admin / edudigital</span>
+                <span>Created by. daus </span>
             </div>
         </div>
     </div>
@@ -1149,7 +1148,10 @@
                     <p class="text-xs font-bold text-white truncate">${item.title}</p>
                     <div class="flex justify-between items-center pt-1">
                         <span class="text-[10px] text-brand-500 font-bold">${item.category}</span>
-                        <button onclick="deleteGalItem('${item.id}')" class="text-rose-400 text-xs font-bold">Hapus</button>
+                        <div class="flex gap-3">
+                            <button onclick="editGalItem('${item.id}')" class="text-amber-400 text-xs font-bold">Edit</button>
+                            <button onclick="deleteGalItem('${item.id}')" class="text-rose-400 text-xs font-bold">Hapus</button>
+                        </div>
                     </div>
                 </div>
             `).join('');
@@ -1278,13 +1280,15 @@
             }
         }
 
-        function openGalFormModal() {
-            openCrudModal('Tambah Foto Galeri', [
-                { label: 'Judul Foto', name: 'title', value: '' },
-                { label: 'Kategori', name: 'category', value: 'Kegiatan' },
-                { label: 'Pilih & Upload Gambar', name: 'image_url', type: 'image_upload', value: '' }
-            ], 'saveGal');
+        function openGalFormModal(id = null) {
+            const item = id ? appState.gallery.find(x => x.id === id) : null;
+            openCrudModal(id ? 'Edit Foto Galeri' : 'Tambah Foto Galeri', [
+                { label: 'Judul Foto', name: 'title', value: item ? item.title : '' },
+                { label: 'Kategori', name: 'category', value: item ? item.category : 'Kegiatan' },
+                { label: 'Pilih & Upload Gambar', name: 'image_url', type: 'image_upload', value: item ? item.image_url : '' }
+            ], 'saveGal', id);
         }
+        function editGalItem(id) { openGalFormModal(id); }
         function deleteGalItem(id) {
             if(confirm("Hapus foto ini?")) {
                 appState.gallery = appState.gallery.filter(x => x.id !== id);
@@ -1363,12 +1367,17 @@
                 });
             } else if(currentCrudType === 'saveGal') {
                 const data = {
-                    id: 'gal-' + Date.now(),
+                    id: currentEditingId || ('gal-' + Date.now()),
                     title: document.getElementById('inp-title').value,
                     category: document.getElementById('inp-category').value,
                     image_url: document.getElementById('inp-image_url').value
                 };
-                appState.gallery.push(data);
+                if(currentEditingId) {
+                    const idx = appState.gallery.findIndex(x => x.id === currentEditingId);
+                    if(idx !== -1) appState.gallery[idx] = data;
+                } else {
+                    appState.gallery.push(data);
+                }
                 syncDataToBackend('saveGallery', data, () => {
                     renderAllData();
                     renderAdminLists();
