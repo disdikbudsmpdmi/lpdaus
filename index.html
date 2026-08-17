@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firdaus Al Khairat, ST - Pelatih Marching Band & Drumband Nasional</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                            dark: '#0b1329',
+                            card: '#131f37'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Blogger Full-Bleed Reset */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            overflow-x: hidden !important;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b1329;
+            color: #f1f5f9;
+        }
+
+        /* Overlay CSS to override Blogger default elements */
+        #app-root {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 999999;
+            background-color: #0b1329;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b1329;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #22c55e;
+        }
+
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(19, 31, 55, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(34, 197, 94, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 50%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #16a34a 0%, #0d9488 100%);
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-100 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Hidden Blogger Thumbnail for Social Sharing & Post Grid -->
+    <div style="display:none !important;" id="blogger-thumbnail-container">
+        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80" alt="FIRDAUS AL KHAIRAT, ST - Pelatih Marching Band">
+    </div>
+
+    <div id="app-root">
+        
+        <!-- Navigation Header -->
+        <nav class="sticky top-0 z-40 glass-panel border-b border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <!-- Brand / Logo -->
+                    <div class="flex items-center space-x-3 cursor-pointer" onclick="scrollToSection('hero')">
+                        <div class="w-11 h-11 rounded-xl gradient-bg flex items-center justify-center font-bold text-xl text-white shadow-lg shadow-brand-500/20">
+                            FK
+                        </div>
+                        <div>
+                            <span class="text-lg font-bold tracking-tight text-white block leading-tight">FIRDAUS AL KHAIRAT, ST</span>
+                            <span class="text-xs text-brand-500 font-semibold tracking-wider uppercase block">Pelatih Sertifikasi PDBI</span>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Nav Links -->
+                    <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                        <button onclick="scrollToSection('hero')" class="hover:text-brand-500 transition-colors">Beranda</button>
+                        <button onclick="scrollToSection('profil')" class="hover:text-brand-500 transition-colors">Profil</button>
+                        <button onclick="scrollToSection('pengalaman')" class="hover:text-brand-500 transition-colors">Pengalaman</button>
+                        <button onclick="scrollToSection('prestasi')" class="hover:text-brand-500 transition-colors">Prestasi</button>
+                        <button onclick="scrollToSection('galeri')" class="hover:text-brand-500 transition-colors">Galeri</button>
+                        <button onclick="scrollToSection('sertifikat')" class="hover:text-brand-500 transition-colors">Sertifikat</button>
+                        <button onclick="scrollToSection('kontak')" class="hover:text-brand-500 transition-colors">Kontak</button>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="hidden md:flex items-center space-x-4">
+                        <button id="admin-btn" onclick="openLoginModal()" class="px-4 py-2 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-lock text-brand-500"></i> Admin Panel
+                        </button>
+                        <button onclick="scrollToSection('kontak')" class="px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg gradient-bg text-white hover:opacity-90 transition-all shadow-md shadow-brand-500/20">
+                            Hubungi Pelatih
+                        </button>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden flex items-center gap-2">
+                        <button id="mobile-admin-btn" onclick="openLoginModal()" class="p-2 text-slate-300 hover:text-white">
+                            <i class="fa-solid fa-lock text-brand-500"></i>
+                        </button>
+                        <button onclick="toggleMobileMenu()" class="p-2 text-slate-300 hover:text-white focus:outline-none">
+                            <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Dropdown Menu -->
+            <div id="mobile-menu" class="hidden md:hidden glass-panel border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+                <button onclick="scrollToSection('hero'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-300 hover:text-brand-500 font-medium">Beranda</button>
+                <button onclick="scrollToSection('profil'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-300 hover:text-brand-500 font-medium">Profil</button>
+                <button onclick="scrollToSection('pengalaman'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-300 hover:text-brand-500 font-medium">Pengalaman</button>
+                <button onclick="scrollToSection('prestasi'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-300 hover:text-brand-500 font-medium">Prestasi</button>
+                <button onclick="scrollToSection('galeri'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-300 hover:text-brand-500 font-medium">Galeri</button>
+                <button onclick="scrollToSection('sertifikat'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-300 hover:text-brand-500 font-medium">Sertifikat</button>
+                <button onclick="scrollToSection('kontak'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-300 hover:text-brand-500 font-medium">Kontak</button>
+                <div class="pt-2">
+                    <button onclick="scrollToSection('kontak'); toggleMobileMenu()" class="w-full py-3 text-center text-xs font-bold uppercase tracking-wider rounded-lg gradient-bg text-white">
+                        Hubungi Pelatih
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="hero" class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+            <!-- Background Glow -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-brand-500/30 text-brand-500 text-xs font-semibold tracking-wide uppercase">
+                            <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                            <span id="hero-badge">Pelatih Pratama Tingkat Nasional PDBI</span>
+                        </div>
+
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white">
+                            Membangun Karakter & Prestasi Melalui <span class="gradient-text">Marching Band</span>
+                        </h1>
+
+                        <p id="hero-bio" class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                            Pelatih sertifikasi nasional PDBI berpengalaman lebih dari 20 tahun dalam membina, melatih, dan membawa tim Marching Band / Drum Band meraih berbagai prestasi kejuaraan daerah maupun nasional.
+                        </p>
+
+                        <!-- Key Stats Pill -->
+                        <div class="pt-2 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
+                            <div class="p-4 rounded-xl glass-card text-center border-slate-800">
+                                <div class="text-2xl sm:text-3xl font-extrabold text-brand-500">20+</div>
+                                <div class="text-xs text-slate-400 font-medium uppercase mt-1">Tahun Pengalaman</div>
+                            </div>
+                            <div class="p-4 rounded-xl glass-card text-center border-slate-800">
+                                <div class="text-2xl sm:text-3xl font-extrabold text-brand-500">12+</div>
+                                <div class="text-xs text-slate-400 font-medium uppercase mt-1">Unit Tim Dilatih</div>
+                            </div>
+                            <div class="p-4 rounded-xl glass-card text-center border-slate-800">
+                                <div class="text-2xl sm:text-3xl font-extrabold text-brand-500">15+</div>
+                                <div class="text-xs text-slate-400 font-medium uppercase mt-1">Penghargaan</div>
+                            </div>
+                        </div>
+
+                        <!-- Hero CTA Buttons -->
+                        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                            <button onclick="scrollToSection('kontak')" class="w-full sm:w-auto px-8 py-4 rounded-xl gradient-bg text-white font-bold text-sm tracking-wider uppercase shadow-xl shadow-brand-500/25 hover:opacity-90 transition-all flex items-center justify-center gap-3">
+                                <i class="fa-solid fa-calendar-check"></i> Undang Konsultasi / Pelatihan
+                            </button>
+                            <button onclick="scrollToSection('sertifikat')" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card text-slate-200 font-bold text-sm tracking-wider uppercase hover:border-brand-500/50 transition-all flex items-center justify-center gap-3">
+                                <i class="fa-solid fa-award text-brand-500"></i> Lihat Sertifikasi
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Card (Profile Card) -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-md">
+                            <!-- Outer glow card -->
+                            <div class="absolute -inset-1 rounded-2xl gradient-bg opacity-30 blur-lg"></div>
+                            
+                            <div class="relative rounded-2xl glass-panel p-6 border border-slate-800 shadow-2xl space-y-6">
+                                <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-slate-900 border border-slate-800">
+                                    <img id="profile-hero-img" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80" alt="FIRDAUS AL KHAIRAT" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                                    <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs">
+                                        <span class="px-2.5 py-1 rounded-md bg-slate-900/90 text-brand-500 font-bold border border-slate-700">
+                                            NPP: <span id="profile-npp">6688070438</span>
+                                        </span>
+                                        <span class="px-2.5 py-1 rounded-md bg-brand-600/90 text-white font-bold">
+                                            S1 Teknik Informatika
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <h3 id="profile-name" class="text-2xl font-bold text-white">FIRDAUS AL KHAIRAT, ST</h3>
+                                    <p class="text-xs text-brand-500 font-semibold tracking-wider uppercase" id="profile-status">
+                                        Sertifikasi Nasional Persatuan Drum Band Indonesia
+                                    </p>
+                                    
+                                    <div class="pt-3 border-t border-slate-800/80 space-y-2 text-xs text-slate-300">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-slate-400"><i class="fa-solid fa-location-dot w-5 text-brand-500"></i> Domisili:</span>
+                                            <span id="profile-address" class="font-medium text-white">Lubuk Gaung, Dumai</span>
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-slate-400"><i class="fa-solid fa-graduation-cap w-5 text-brand-500"></i> Pendidikan:</span>
+                                            <span id="profile-degree" class="font-medium text-white">S1 (Teknik Informatika)</span>
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-slate-400"><i class="fa-solid fa-certificate w-5 text-brand-500"></i> Kualifikasi:</span>
+                                            <span class="font-medium text-brand-500">Pelatih Pratama Nasional</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Profil Section -->
+        <section id="profil" class="py-16 bg-slate-950/60 border-y border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                    <h2 class="text-xs font-extrabold tracking-widest text-brand-500 uppercase">Tentang Pelatih</h2>
+                    <p class="text-3xl font-bold text-white">Dedikasi & Kompetensi Profesional</p>
+                    <p class="text-slate-400 text-sm">Rekam jejak panjang dalam pembinaan seni musik Marching Band di tingkat Kota, Provinsi, dan Kejuaraan Nasional.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card p-6 rounded-2xl space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-500 text-xl font-bold">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Sertifikasi Resmi PDBI</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Memegang sertifikat Pelatih Pratama Tingkat Nasional yang dikeluarkan resmi oleh Pengurus Besar Persatuan Drum Band Indonesia (PB. PDBI) dengan No. Pokok Pelatih 6688070438.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-500 text-xl font-bold">
+                            <i class="fa-solid fa-drum"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Keahlian Brass & Percussion</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Pengalaman komprehensif dari lini pemain instrumen Low Brass (Bariton, Tuba) dan Battery (Bass Drum) hingga memimpin arransemen, drill visual, dan manajemen unit Marching Band.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-500 text-xl font-bold">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Pendekatan Terstruktur & IT</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Latar belakang Pendidikan S1 Teknik Informatika memberikan nilai tambah berupa penyusunan materi pelatihan yang sistematis, terdigitalisasi, dan terukur.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pengalaman Section -->
+        <section id="pengalaman" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                    <div>
+                        <h2 class="text-xs font-extrabold tracking-widest text-brand-500 uppercase">Rekam Jejak Karir</h2>
+                        <p class="text-3xl font-bold text-white mt-1">Pengalaman Pemain & Pelatih</p>
+                    </div>
+
+                    <!-- Category Tabs Switcher -->
+                    <div class="inline-flex p-1.5 rounded-xl glass-panel border border-slate-800">
+                        <button id="tab-pelatih-btn" onclick="switchExpTab('pelatih')" class="px-6 py-2.5 rounded-lg text-xs font-bold transition-all bg-brand-600 text-white shadow-md">
+                            <i class="fa-solid fa-chalkboard-user mr-2"></i> Pengalaman Pelatih
+                        </button>
+                        <button id="tab-pemain-btn" onclick="switchExpTab('pemain')" class="px-6 py-2.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all">
+                            <i class="fa-solid fa-drum-steelpan mr-2"></i> Pengalaman Pemain
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Timeline List Container -->
+                <div id="exp-container" class="relative border-l-2 border-slate-800 ml-4 md:ml-6 space-y-8">
+                    <!-- Dynamic Experience Items will render here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Prestasi Section -->
+        <section id="prestasi" class="py-20 bg-slate-950/60 border-y border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                    <h2 class="text-xs font-extrabold tracking-widest text-brand-500 uppercase">Pencapaian Terbaik</h2>
+                    <p class="text-3xl font-bold text-white">Prestasi & Penghargaan</p>
+                    <p class="text-slate-400 text-sm">Bukti nyata dedikasi dalam membawa berbagai unit Drumband dan Marching Band meraih tangga juara.</p>
+                </div>
+
+                <div id="achievements-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic Achievement cards will render here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Galeri Kegiatan Section -->
+        <section id="galeri" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                    <div>
+                        <h2 class="text-xs font-extrabold tracking-widest text-brand-500 uppercase">Dokumentasi Lapangan</h2>
+                        <p class="text-3xl font-bold text-white mt-1">Galeri Kegiatan & Penampilan</p>
+                    </div>
+                </div>
+
+                <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic Gallery items will render here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sertifikat Section -->
+        <section id="sertifikat" class="py-20 bg-slate-950/60 border-t border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                    <h2 class="text-xs font-extrabold tracking-widest text-brand-500 uppercase">Legalitas & Kualifikasi</h2>
+                    <p class="text-3xl font-bold text-white">Sertifikat Resmi Pelatih</p>
+                    <p class="text-slate-400 text-sm">Lisensi Pelatih Pratama Tingkat Nasional yang dikeluarkan oleh Pengurus Provinsi dan Pengurus Besar Persatuan Drum Band Indonesia.</p>
+                </div>
+
+                <div id="certificates-container" class="max-w-4xl mx-auto">
+                    <!-- Dynamic Certificate card will render here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Kontak Section -->
+        <section id="kontak" class="py-20 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    
+                    <!-- Left Info -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <h2 class="text-xs font-extrabold tracking-widest text-brand-500 uppercase">Hubungi Pelatih</h2>
+                        <p class="text-3xl font-bold text-white">Mari Bekerja Sama</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Menerima undangan pembinaan rutin, konsultasi manajemen unit Marching Band, pelatihan intensif (clinic/workshop), maupun pembuatan materi lagu & visual drill.
+                        </p>
+
+                        <div class="space-y-4 pt-4">
+                            <div class="flex items-start gap-4 p-4 rounded-xl glass-card">
+                                <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-500 flex items-center justify-center shrink-0 font-bold">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-400 uppercase">Domisili Utama</h4>
+                                    <p class="text-sm font-semibold text-white mt-0.5">Lubuk Gaung, Kota Dumai, Riau</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 rounded-xl glass-card">
+                                <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-500 flex items-center justify-center shrink-0 font-bold">
+                                    <i class="fa-solid fa-id-card"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-400 uppercase">Nomor Pokok Pelatih (NPP)</h4>
+                                    <p class="text-sm font-semibold text-white mt-0.5">6688070438 (PDBI)</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 rounded-xl glass-card">
+                                <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-500 flex items-center justify-center shrink-0 font-bold">
+                                    <i class="fa-solid fa-award"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-400 uppercase">Status Sertifikasi</h4>
+                                    <p class="text-sm font-semibold text-brand-500 mt-0.5">Pelatih Pratama Tingkat Nasional</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Form -->
+                    <div class="lg:col-span-7">
+                        <div class="p-8 rounded-2xl glass-panel border border-slate-800 space-y-6">
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-paper-plane text-brand-500"></i> Kirim Pesan / Penawaran
+                            </h3>
+                            
+                            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 uppercase mb-2">Nama Lengkap / Instansi</label>
+                                        <input type="text" id="sender-name" required placeholder="Contoh: Pembina MB. Gita Swara" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 uppercase mb-2">No. WhatsApp / Email</label>
+                                        <input type="text" id="sender-contact" required placeholder="08xxxxxxxxx" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 uppercase mb-2">Pesan / Keperluan Konsultasi</label>
+                                    <textarea id="sender-message" rows="4" required placeholder="Tuliskan pesan, jadwal klinik, atau kebutuhan undangan pelatih di sini..." class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-500 transition-colors resize-none"></textarea>
+                                </div>
+
+                                <button type="submit" id="btn-submit-contact" class="w-full py-4 rounded-xl gradient-bg text-white font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20">
+                                    <i class="fa-solid fa-paper-plane"></i> Kirim Pesan Sekarang
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-8 bg-slate-950 border-t border-slate-900 text-center text-xs text-slate-500">
+            <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p>&copy; 2026 FIRDAUS AL KHAIRAT, ST. All rights reserved.</p>
+                <p class="text-slate-600">Sertifikasi Resmi Pelatih Pratama PDBI Nasional</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Modal Login Admin -->
+    <div id="login-modal" class="fixed inset-0 z-[1000000] hidden flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
+        <div class="w-full max-w-md rounded-2xl glass-panel p-8 border border-slate-800 shadow-2xl relative space-y-6">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="text-center space-y-2">
+                <div class="w-12 h-12 rounded-xl gradient-bg mx-auto flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-brand-500/20">
+                    <i class="fa-solid fa-user-lock"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">Login Admin Panel</h3>
+                <p class="text-xs text-slate-400">Masuk untuk mengelola data portofolio, galeri, dan pesan.</p>
+            </div>
+
+            <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Username</label>
+                    <input type="text" id="login-username" required placeholder="admin" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Password</label>
+                    <input type="password" id="login-password" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-brand-500">
+                </div>
+
+                <button type="submit" id="login-submit-btn" class="w-full py-3.5 rounded-xl gradient-bg text-white font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all">
+                    Masuk Dashboard
+                </button>
+            </form>
+
+            <div class="text-center pt-2 text-[11px] text-slate-500">
+                <span>Mode Preview Login: </span>
+                <span class="text-brand-500 font-mono">admin / edudigital</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Lightbox Image Viewer -->
+    <div id="lightbox-modal" class="fixed inset-0 z-[1000000] hidden flex items-center justify-center bg-slate-950/90 backdrop-blur-md p-4" onclick="closeLightbox()">
+        <div class="relative max-w-4xl w-full" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white hover:text-brand-500 text-2xl font-bold">
+                <i class="fa-solid fa-xmark"></i> Tutup
+            </button>
+            <img id="lightbox-img" src="" alt="Preview" class="w-full max-h-[80vh] object-contain rounded-xl border border-slate-800">
+            <p id="lightbox-caption" class="text-center text-sm text-slate-300 mt-4 font-medium"></p>
+        </div>
+    </div>
+
+    <!-- Full-Screen Admin Control Panel -->
+    <div id="admin-dashboard-modal" class="fixed inset-0 z-[9999999] hidden bg-slate-950 text-white overflow-y-auto">
+        <!-- Admin Header -->
+        <header class="sticky top-0 z-50 glass-panel border-b border-slate-800 px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center font-bold text-white">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <div>
+                    <h2 class="text-base font-bold text-white">Admin Control Panel</h2>
+                    <p class="text-xs text-brand-500 font-semibold">FIRDAUS AL KHAIRAT, ST Portfolio Manager</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <span id="preview-mode-badge" class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-bold">
+                    Mode Preview Active
+                </span>
+                <button onclick="closeAdminDashboard()" class="px-4 py-2 rounded-lg bg-rose-600/80 hover:bg-rose-600 text-white text-xs font-bold transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-right-from-bracket"></i> Keluar Dashboard
+                </button>
+            </div>
+        </header>
+
+        <!-- Admin Main Content -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+            
+            <!-- Admin Navigation Tabs -->
+            <div class="flex flex-wrap gap-2 border-b border-slate-800 pb-4">
+                <button onclick="switchAdminTab('profile')" id="adm-tab-profile" class="px-5 py-2.5 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white">
+                    <i class="fa-solid fa-user-gear mr-2"></i> Edit Profil
+                </button>
+                <button onclick="switchAdminTab('exp')" id="adm-tab-exp" class="px-5 py-2.5 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition-all">
+                    <i class="fa-solid fa-briefcase mr-2"></i> Pengalaman (CRUD)
+                </button>
+                <button onclick="switchAdminTab('ach')" id="adm-tab-ach" class="px-5 py-2.5 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition-all">
+                    <i class="fa-solid fa-trophy mr-2"></i> Prestasi (CRUD)
+                </button>
+                <button onclick="switchAdminTab('gal')" id="adm-tab-gal" class="px-5 py-2.5 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition-all">
+                    <i class="fa-solid fa-images mr-2"></i> Galeri (CRUD)
+                </button>
+                <button onclick="switchAdminTab('cert')" id="adm-tab-cert" class="px-5 py-2.5 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition-all">
+                    <i class="fa-solid fa-file-certificate mr-2"></i> Sertifikat (CRUD)
+                </button>
+                <button onclick="switchAdminTab('msg')" id="adm-tab-msg" class="px-5 py-2.5 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition-all">
+                    <i class="fa-solid fa-envelope mr-2"></i> Pesan Masuk
+                </button>
+            </div>
+
+            <!-- TAB 1: EDIT PROFIL -->
+            <div id="adm-pane-profile" class="space-y-6">
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
+                    <h3 class="text-lg font-bold text-white">Informasi Diri & Hero Section</h3>
+                    
+                    <form onsubmit="handleSaveProfileAdmin(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Nama Lengkap & Gelar</label>
+                                <input type="text" id="adm-prof-name" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">No. Pokok Pelatih (NPP)</label>
+                                <input type="text" id="adm-prof-npp" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Status Sertifikasi</label>
+                                <input type="text" id="adm-prof-status" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Pendidikan Terakhir</label>
+                                <input type="text" id="adm-prof-degree" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Alamat / Domisili</label>
+                            <input type="text" id="adm-prof-address" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Bio Ringkas (Hero Section)</label>
+                            <textarea id="adm-prof-bio" rows="3" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Foto Profil Hero (Upload Gambar)</label>
+                            <div class="flex flex-col sm:flex-row items-center gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800">
+                                <img id="adm-prof-hero-preview" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80" class="w-20 h-20 object-cover rounded-xl border border-slate-700 bg-slate-950 shrink-0" alt="Preview">
+                                <div class="w-full space-y-2">
+                                    <input type="file" id="adm-prof-hero-file" accept="image/*" onchange="previewProfileImageUpload(event)" class="block w-full text-xs text-slate-400 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-brand-600 file:text-white hover:file:bg-brand-500 file:cursor-pointer cursor-pointer">
+                                    <input type="hidden" id="adm-prof-hero-img">
+                                    <p class="text-[10px] text-slate-500">Format: JPG, PNG, WEBP. Otomatis dikonversi ke format gambar lokal.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="px-6 py-3 rounded-xl gradient-bg text-white font-bold text-xs uppercase tracking-wider">
+                            Simpan Perubahan Profil
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- TAB 2: PENGALAMAN (CRUD) -->
+            <div id="adm-pane-exp" class="hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-bold text-white">Kelola Riwayat Pengalaman</h3>
+                    <button onclick="openExpFormModal()" class="px-4 py-2 rounded-xl gradient-bg text-white text-xs font-bold">
+                        <i class="fa-solid fa-plus mr-1"></i> Tambah Pengalaman
+                    </button>
+                </div>
+
+                <div id="adm-exp-list" class="space-y-3">
+                    <!-- Dynamic List of Experiences for CRUD -->
+                </div>
+            </div>
+
+            <!-- TAB 3: PRESTASI (CRUD) -->
+            <div id="adm-pane-ach" class="hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-bold text-white">Kelola Daftar Prestasi</h3>
+                    <button onclick="openAchFormModal()" class="px-4 py-2 rounded-xl gradient-bg text-white text-xs font-bold">
+                        <i class="fa-solid fa-plus mr-1"></i> Tambah Prestasi
+                    </button>
+                </div>
+
+                <div id="adm-ach-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Dynamic List of Achievements for CRUD -->
+                </div>
+            </div>
+
+            <!-- TAB 4: GALERI (CRUD) -->
+            <div id="adm-pane-gal" class="hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-bold text-white">Kelola Foto Galeri</h3>
+                    <button onclick="openGalFormModal()" class="px-4 py-2 rounded-xl gradient-bg text-white text-xs font-bold">
+                        <i class="fa-solid fa-plus mr-1"></i> Tambah Foto Galeri
+                    </button>
+                </div>
+
+                <div id="adm-gal-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <!-- Dynamic List of Gallery Items -->
+                </div>
+            </div>
+
+            <!-- TAB 5: SERTIFIKAT (CRUD) -->
+            <div id="adm-pane-cert" class="hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-bold text-white">Kelola Sertifikat & Lisensi</h3>
+                    <button onclick="openCertFormModal()" class="px-4 py-2 rounded-xl gradient-bg text-white text-xs font-bold">
+                        <i class="fa-solid fa-plus mr-1"></i> Tambah Sertifikat
+                    </button>
+                </div>
+
+                <div id="adm-cert-list" class="space-y-4">
+                    <!-- Dynamic List of Certificates -->
+                </div>
+            </div>
+
+            <!-- TAB 6: PESAN MASUK -->
+            <div id="adm-pane-msg" class="hidden space-y-6">
+                <h3 class="text-lg font-bold text-white">Pesan Masuk Dari Pengunjung</h3>
+                <div id="adm-msg-list" class="space-y-3">
+                    <!-- Dynamic Messages List -->
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Modal Form Generic Admin CRUD -->
+    <div id="crud-form-modal" class="fixed inset-0 z-[10000000] hidden flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
+        <div class="w-full max-w-lg rounded-2xl glass-panel p-6 border border-slate-800 space-y-4 relative">
+            <button onclick="closeCrudModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <h3 id="crud-modal-title" class="text-base font-bold text-white">Form Input</h3>
+            <form id="crud-dynamic-form" onsubmit="handleCrudFormSubmit(event)" class="space-y-3">
+                <!-- Dynamic inputs generated via JS -->
+                <div id="crud-inputs-container" class="space-y-3"></div>
+                
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeCrudModal()" class="px-4 py-2 rounded-xl bg-slate-800 text-xs font-bold text-slate-300">Batal</button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl gradient-bg text-xs font-bold text-white">Simpan Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // KONFIGURASI APLIKASI
+        // UBAH IS_PREVIEW KE false JIKA AKAN DI-DEPLOY KE BLOGGER
+        const IS_PREVIEW = false; // Set default true untuk Canvas
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbxpL1_NzxxO812OuXn3CjQr3Wg3Hv5yykybCiiJd7ciRKP6MulJBlA_dmPg23YxaxgE3g/exec";
+
+        // MASTER STATE DATA (DUMMY INITIAL DATA FROM FIRDAUS AL KHAIRAT CV)
+        let appState = {
+            profile: {
+                name: "FIRDAUS AL KHAIRAT, ST",
+                npp: "6688070438",
+                certification_status: "Sertifikasi Nasional PDBI (Pelatih Pratama)",
+                degree: "S1 (Teknik Informatika)",
+                address: "Lubuk Gaung, Dumai, Riau",
+                hero_title: "Pelatih Marching Band & Drumband Profesional",
+                bio: "Pelatih sertifikasi nasional PDBI berpengalaman lebih dari 20 tahun dalam membina, melatih, dan membawa tim Marching Band / Drum Band meraih berbagai prestasi kejuaraan daerah maupun nasional.",
+                hero_img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80"
+            },
+            experiences: [
+                { id: "exp-1", category: "pelatih", period: "2005 - 2006", description: "Dipercayai memimpin anggota junior section Low Brass di MB. BCK Dumai (PT. Chevron)." },
+                { id: "exp-2", category: "pelatih", period: "2006 - 2014", description: "Pelatih Utama di DB. Hangtuah Dumai (DBHD), DB. Suara Kartika Dumai (DB SKD), dan DB. SDIT Muslimin Dumai." },
+                { id: "exp-3", category: "pelatih", period: "2014 - 2016", description: "Pelatih di DB. Hangtuah Dumai, MB. Gita Swara Al Huda (MB.GSA), DB. Mahardika Corps, DB. SMPN 6 Dumai, dan DB. SDN 009 Bukit Kapur." },
+                { id: "exp-4", category: "pelatih", period: "2017 - Sekarang", description: "Pelatih Utama MB. Bahana Gita Pratama Dinas Pendidikan dan Kebudayaan Kota Dumai." },
+                { id: "exp-5", category: "pelatih", period: "2022 - Sekarang", description: "Pelatih DB. GITA PERWIRA SMAN 4 DUMAI, DB. SDN 023 Teluk Binjai Dumai, dan DB. SDN 012 Purnama Dumai." },
+                { id: "exp-6", category: "pemain", period: "2000 - 2006", description: "Pemain Bariton, Tuba, & Bass Drum di MB. BCK Dumai (PT. Chevron)." },
+                { id: "exp-7", category: "pemain", period: "2003", description: "Mengikuti Parade Senja di Istana Negara Jakarta." },
+                { id: "exp-8", category: "pemain", period: "2004", description: "Memperkuat Team MB. BCK Duri pada Kejuaraan Nasional GPMB Tahun 2004 di Senayan Jakarta." },
+                { id: "exp-9", category: "pemain", period: "2000 - 2006", description: "Mengikuti Karnaval Marching Band Rumbai & Upacara Besar Hari Kemerdekaan RI, HUT TNI, TNI AU, TNI AD, dan KODIM." }
+            ],
+            achievements: [
+                { id: "ach-1", year: "2007", title: "Juara 1 Parade Street Sekota Dumai", description: "Membawa DB. Swara Kartika Dumai meraih Juara 1 & Dipercayai Sebagai Pemberi Materi Latihan Bersama Sekota Dumai." },
+                { id: "ach-2", year: "2008", title: "Juara 2 Parade Street Sekota Dumai", description: "Membawa DB. Swara Kartika Dumai meraih Juara 2 Parade Street." },
+                { id: "ach-3", year: "2012", title: "Penampil Kehormatan Kirab PON", description: "DB. Swara Kartika Dumai mendapat kehormatan tampil pada Kirab PON XVIII Provinsi Riau." },
+                { id: "ach-4", year: "2013 - 2014", title: "Juara 2 Parade Street Sekota Dumai", description: "Membawa DB. Hangtuah Dumai Juara 2 secara berturut-turut pada kejuaraan Parade Street Kota Dumai." },
+                { id: "ach-5", year: "2016", title: "Juara 1 Parade Street Sekota Dumai", description: "Membawa MB. Gita Swara Al Huda meraih Juara 1 Parade Street Sekota Dumai." },
+                { id: "ach-6", year: "2017 - 2018", title: "Pentas Kolaborasi MTQ Riau & Upacara Akbar", description: "Membawa 150 personel tim kolaborasi MB/DB, Kompang, Tari, Silat di MTQ Provinsi Riau & Pelatih MB. Bahana Gita Pratama pada Hardiknas, PGRI, K3 Nasional." }
+            ],
+            gallery: [
+                { id: "gal-1", title: "MB. Bahana Gita Pratama Disdikbud Dumai", category: "Upacara Resmi", image_url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80" },
+                { id: "gal-2", title: "Atraksi Parade Street Drumband", category: "Parade", image_url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80" },
+                { id: "gal-3", title: "Barisan Hornline / Trumpet Section", category: "Penampilan", image_url: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&auto=format&fit=crop&q=80" },
+                { id: "gal-4", title: "Parade Jalanan Kota Dumai", category: "Parade", image_url: "https://images.unsplash.com/photo-1526478806334-5fd488fcaabc?w=800&auto=format&fit=crop&q=80" },
+                { id: "gal-5", title: "Pentas Kolaborasi Marching Band", category: "Pentas", image_url: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800&auto=format&fit=crop&q=80" },
+                { id: "gal-6", title: "Latihan Lini Percussion & Tenor", category: "Latihan", image_url: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=800&auto=format&fit=crop&q=80" }
+            ],
+            certificates: [
+                {
+                    id: "cert-1",
+                    cert_name: "Sertifikat Pelatih Pratama Tingkat Nasional",
+                    issuer: "Pengurus Provinsi & PB. Persatuan Drum Band Indonesia (PDBI)",
+                    cert_number: "6688070438",
+                    date: "15 - 19 Maret 2016",
+                    image_url: "https://images.unsplash.com/photo-1589330694653-aded6f786572?w=800&auto=format&fit=crop&q=80"
+                }
+            ],
+            messages: [
+                { id: "msg-1", sender_name: "Pembina MB. Gita Swara", sender_contact: "081234567890", message: "Halo Pak Firdaus, kami bermaksud mengundang Bapak untuk menjadi coach klinik brass section.", timestamp: "2026-08-10 14:30" }
+            ]
+        };
+
+        let currentActiveExpTab = 'pelatih';
+        let currentAdminTab = 'profile';
+        let currentCrudType = '';
+        let currentEditingId = null;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!IS_PREVIEW && GAS_URL && GAS_URL !== "URL_DEPLOY_GAS_ANDA_DISINI") {
+                fetchAppDataFromGAS();
+            } else {
+                renderAllData();
+            }
+        });
+
+        function fetchAppDataFromGAS() {
+            fetch(`${GAS_URL}?action=getAppData`)
+                .then(res => res.json())
+                .then(response => {
+                    if (response.status === 'success' && response.data) {
+                        appState = response.data;
+                        renderAllData();
+                    }
+                })
+                .catch(err => {
+                    console.error("Error fetching data from GAS:", err);
+                    renderAllData();
+                });
+        }
+
+        function renderAllData() {
+            renderProfileUI();
+            renderExperiencesUI();
+            renderAchievementsUI();
+            renderGalleryUI();
+            renderCertificatesUI();
+            renderAdminLists();
+        }
+
+        function renderProfileUI() {
+            document.getElementById('profile-name').innerText = appState.profile.name;
+            document.getElementById('profile-npp').innerText = appState.profile.npp;
+            document.getElementById('profile-status').innerText = appState.profile.certification_status;
+            document.getElementById('profile-address').innerText = appState.profile.address;
+            document.getElementById('profile-degree').innerText = appState.profile.degree;
+            document.getElementById('hero-bio').innerText = appState.profile.bio;
+            if(appState.profile.hero_img) {
+                document.getElementById('profile-hero-img').src = appState.profile.hero_img;
+            }
+        }
+
+        function switchExpTab(tab) {
+            currentActiveExpTab = tab;
+            const pelatihBtn = document.getElementById('tab-pelatih-btn');
+            const pemainBtn = document.getElementById('tab-pemain-btn');
+
+            if (tab === 'pelatih') {
+                pelatihBtn.className = "px-6 py-2.5 rounded-lg text-xs font-bold transition-all bg-brand-600 text-white shadow-md";
+                pemainBtn.className = "px-6 py-2.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all";
+            } else {
+                pemainBtn.className = "px-6 py-2.5 rounded-lg text-xs font-bold transition-all bg-brand-600 text-white shadow-md";
+                pelatihBtn.className = "px-6 py-2.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all";
+            }
+            renderExperiencesUI();
+        }
+
+        function renderExperiencesUI() {
+            const container = document.getElementById('exp-container');
+            const items = appState.experiences.filter(x => x.category === currentActiveExpTab);
+            
+            if(items.length === 0) {
+                container.innerHTML = `<p class="pl-6 text-slate-500 text-xs">Belum ada data pengalaman.</p>`;
+                return;
+            }
+
+            container.innerHTML = items.map((item, idx) => `
+                <div class="relative pl-6 sm:pl-8 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-900 border-2 border-brand-500 group-hover:bg-brand-500 transition-colors"></div>
+                    <div class="glass-card p-5 rounded-xl space-y-1.5">
+                        <span class="px-2.5 py-0.5 rounded-md bg-brand-500/10 text-brand-400 font-bold text-[11px] border border-brand-500/20 inline-block">
+                            ${item.period}
+                        </span>
+                        <p class="text-sm font-semibold text-slate-200 leading-relaxed">
+                            ${item.description}
+                        </p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderAchievementsUI() {
+            const grid = document.getElementById('achievements-grid');
+            grid.innerHTML = appState.achievements.map(ach => `
+                <div class="glass-card p-6 rounded-2xl space-y-3 relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 font-extrabold text-xs border border-brand-500/30">
+                            ${ach.year}
+                        </span>
+                        <i class="fa-solid fa-trophy text-amber-400 text-lg"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white">${ach.title}</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">${ach.description}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderGalleryUI() {
+            const grid = document.getElementById('gallery-grid');
+            grid.innerHTML = appState.gallery.map(item => `
+                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openLightbox('${item.image_url}', '${item.title} - ${item.category}')">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img src="${item.image_url}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                            <span class="text-xs text-white font-bold"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="p-4 space-y-1">
+                        <span class="text-[10px] font-bold text-brand-500 uppercase tracking-wider">${item.category}</span>
+                        <h4 class="text-xs font-bold text-white truncate">${item.title}</h4>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderCertificatesUI() {
+            const container = document.getElementById('certificates-container');
+            if(appState.certificates.length === 0) {
+                container.innerHTML = `<p class="text-center text-slate-500 text-xs">Belum ada data sertifikat.</p>`;
+                return;
+            }
+
+            const cert = appState.certificates[0];
+            container.innerHTML = `
+                <div class="glass-card p-6 rounded-2xl border border-brand-500/30 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                    <div class="md:col-span-5 aspect-[4/3] rounded-xl overflow-hidden bg-slate-900 border border-slate-800 cursor-pointer" onclick="openLightbox('${cert.image_url}', '${cert.cert_name}')">
+                        <img src="${cert.image_url}" alt="${cert.cert_name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="md:col-span-7 space-y-4">
+                        <span class="px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 font-bold text-xs border border-brand-500/30">
+                            SERTIFIKAT KELULUSAN RESMI
+                        </span>
+                        <h3 class="text-xl font-bold text-white">${cert.cert_name}</h3>
+                        <p class="text-xs text-slate-300"><i class="fa-solid fa-building-columns text-brand-500 mr-2"></i> <strong>Penerbit:</strong> ${cert.issuer}</p>
+                        <p class="text-xs text-slate-300"><i class="fa-solid fa-hashtag text-brand-500 mr-2"></i> <strong>No. Registrasi:</strong> ${cert.cert_number}</p>
+                        <p class="text-xs text-slate-300"><i class="fa-solid fa-calendar text-brand-500 mr-2"></i> <strong>Tanggal Pelaksanaan:</strong> ${cert.date}</p>
+                        <button onclick="openLightbox('${cert.image_url}', '${cert.cert_name}')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-brand-400 font-bold text-xs transition-colors inline-flex items-center gap-2">
+                            <i class="fa-solid fa-expand"></i> Lihaf Sertifikat Resolusi Tinggi
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if(el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openLightbox(url, caption) {
+            document.getElementById('lightbox-img').src = url;
+            document.getElementById('lightbox-caption').innerText = caption;
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+        }
+
+        function openLoginModal() {
+            document.getElementById('login-modal').classList.remove('hidden');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('login-modal').classList.add('hidden');
+        }
+
+        function handleLoginSubmit(e) {
+            e.preventDefault();
+            const u = document.getElementById('login-username').value.trim();
+            const p = document.getElementById('login-password').value.trim();
+            const btn = document.getElementById('login-submit-btn');
+
+            btn.innerText = "Memverifikasi...";
+
+            if (IS_PREVIEW) {
+                setTimeout(() => {
+                    btn.innerText = "Masuk Dashboard";
+                    if (u === "admin" && p === "edudigital") {
+                        closeLoginModal();
+                        openAdminDashboard();
+                    } else if (u === "peserta" && p === "edudigital") {
+                        alert("Login Peserta berhasil. Anda berada dalam tampilan Read-Only Guest.");
+                        closeLoginModal();
+                    } else {
+                        alert("Username atau Password salah! (Preview mode: admin / edudigital)");
+                    }
+                }, 500);
+            } else {
+                fetch(`${GAS_URL}?action=loginAdmin`, {
+                    method: 'POST',
+                    body: JSON.stringify({ username: u, password: p })
+                })
+                .then(res => res.json())
+                .then(res => {
+                    btn.innerText = "Masuk Dashboard";
+                    if(res.status === 'success') {
+                        closeLoginModal();
+                        openAdminDashboard();
+                    } else {
+                        alert("Login Gagal: " + res.message);
+                    }
+                })
+                .catch(err => {
+                    btn.innerText = "Masuk Dashboard";
+                    alert("Terjadi kesalahan koneksi backend GAS.");
+                });
+            }
+        }
+
+        function openAdminDashboard() {
+            populateAdminProfileInputs();
+            renderAdminLists();
+            document.getElementById('admin-dashboard-modal').classList.remove('hidden');
+        }
+
+        function closeAdminDashboard() {
+            document.getElementById('admin-dashboard-modal').classList.add('hidden');
+        }
+
+        function switchAdminTab(tab) {
+            currentAdminTab = tab;
+            const tabs = ['profile', 'exp', 'ach', 'gal', 'cert', 'msg'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`adm-tab-${t}`);
+                const pane = document.getElementById(`adm-pane-${t}`);
+                if (t === tab) {
+                    btn.className = "px-5 py-2.5 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white";
+                    pane.classList.remove('hidden');
+                } else {
+                    btn.className = "px-5 py-2.5 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition-all";
+                    pane.classList.add('hidden');
+                }
+            });
+        }
+
+        function populateAdminProfileInputs() {
+            document.getElementById('adm-prof-name').value = appState.profile.name;
+            document.getElementById('adm-prof-npp').value = appState.profile.npp;
+            document.getElementById('adm-prof-status').value = appState.profile.certification_status;
+            document.getElementById('adm-prof-degree').value = appState.profile.degree;
+            document.getElementById('adm-prof-address').value = appState.profile.address;
+            document.getElementById('adm-prof-bio').value = appState.profile.bio;
+            
+            const heroImg = appState.profile.hero_img || '';
+            document.getElementById('adm-prof-hero-img').value = heroImg;
+            if(heroImg) {
+                document.getElementById('adm-prof-hero-preview').src = heroImg;
+            }
+        }
+
+        function previewProfileImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                if (file.size > 3 * 1024 * 1024) {
+                    alert("Ukuran gambar terlalu besar! Maksimal 3MB.");
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const dataUrl = e.target.result;
+                    document.getElementById('adm-prof-hero-preview').src = dataUrl;
+                    document.getElementById('adm-prof-hero-img').value = dataUrl;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function previewCrudImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                if (file.size > 3 * 1024 * 1024) {
+                    alert("Ukuran gambar terlalu besar! Maksimal 3MB.");
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const dataUrl = e.target.result;
+                    const prev = document.getElementById('crud-img-preview');
+                    const inp = document.getElementById('inp-image_url');
+                    if(prev) prev.src = dataUrl;
+                    if(inp) inp.value = dataUrl;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handleSaveProfileAdmin(e) {
+            e.preventDefault();
+            appState.profile.name = document.getElementById('adm-prof-name').value;
+            appState.profile.npp = document.getElementById('adm-prof-npp').value;
+            appState.profile.certification_status = document.getElementById('adm-prof-status').value;
+            appState.profile.degree = document.getElementById('adm-prof-degree').value;
+            appState.profile.address = document.getElementById('adm-prof-address').value;
+            appState.profile.bio = document.getElementById('adm-prof-bio').value;
+            appState.profile.hero_img = document.getElementById('adm-prof-hero-img').value;
+
+            syncDataToBackend('saveProfile', appState.profile, () => {
+                renderAllData();
+                alert("Profil berhasil diperbarui!");
+            });
+        }
+
+        function renderAdminLists() {
+            // Exp List
+            const expList = document.getElementById('adm-exp-list');
+            expList.innerHTML = appState.experiences.map(item => `
+                <div class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between gap-4">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase ${item.category==='pelatih'?'text-brand-500':'text-blue-400'}">[${item.category}] ${item.period}</span>
+                        <p class="text-xs text-white mt-1">${item.description}</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="editExpItem('${item.id}')" class="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-xs font-bold">Edit</button>
+                        <button onclick="deleteExpItem('${item.id}')" class="px-3 py-1.5 rounded-lg bg-rose-500/20 text-rose-400 text-xs font-bold">Hapus</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Ach List
+            const achList = document.getElementById('adm-ach-list');
+            achList.innerHTML = appState.achievements.map(item => `
+                <div class="p-4 rounded-xl glass-panel border border-slate-800 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-brand-500">${item.year}</span>
+                        <div class="flex gap-2">
+                            <button onclick="editAchItem('${item.id}')" class="text-amber-400 text-xs font-bold">Edit</button>
+                            <button onclick="deleteAchItem('${item.id}')" class="text-rose-400 text-xs font-bold">Hapus</button>
+                        </div>
+                    </div>
+                    <h4 class="text-xs font-bold text-white">${item.title}</h4>
+                    <p class="text-[11px] text-slate-400">${item.description}</p>
+                </div>
+            `).join('');
+
+            // Gal List
+            const galList = document.getElementById('adm-gal-list');
+            galList.innerHTML = appState.gallery.map(item => `
+                <div class="p-3 rounded-xl glass-panel border border-slate-800 space-y-2">
+                    <img src="${item.image_url}" class="w-full h-24 object-cover rounded-lg">
+                    <p class="text-xs font-bold text-white truncate">${item.title}</p>
+                    <div class="flex justify-between items-center pt-1">
+                        <span class="text-[10px] text-brand-500 font-bold">${item.category}</span>
+                        <button onclick="deleteGalItem('${item.id}')" class="text-rose-400 text-xs font-bold">Hapus</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Cert List
+            const certList = document.getElementById('adm-cert-list');
+            certList.innerHTML = appState.certificates.map(item => `
+                <div class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between">
+                    <div>
+                        <h4 class="text-xs font-bold text-white">${item.cert_name}</h4>
+                        <p class="text-[11px] text-slate-400">No: ${item.cert_number} | ${item.issuer}</p>
+                    </div>
+                    <button onclick="deleteCertItem('${item.id}')" class="text-rose-400 text-xs font-bold">Hapus</button>
+                </div>
+            `).join('');
+
+            // Msg List
+            const msgList = document.getElementById('adm-msg-list');
+            if(appState.messages.length === 0) {
+                msgList.innerHTML = `<p class="text-xs text-slate-500">Belum ada pesan masuk.</p>`;
+            } else {
+                msgList.innerHTML = appState.messages.map(msg => `
+                    <div class="p-4 rounded-xl glass-panel border border-slate-800 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-white">${msg.sender_name} (${msg.sender_contact})</span>
+                            <span class="text-[10px] text-slate-500">${msg.timestamp}</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">${msg.message}</p>
+                        <button onclick="deleteMsgItem('${msg.id}')" class="text-rose-400 text-[11px] font-bold">Hapus Pesan</button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function openCrudModal(title, inputs, onSubmitType, editingId = null) {
+            currentCrudType = onSubmitType;
+            currentEditingId = editingId;
+            document.getElementById('crud-modal-title').innerText = title;
+            const container = document.getElementById('crud-inputs-container');
+            
+            container.innerHTML = inputs.map(inp => {
+                if (inp.type === 'textarea') {
+                    return `
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-1">${inp.label}</label>
+                            <textarea id="inp-${inp.name}" rows="3" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs" required>${inp.value || ''}</textarea>
+                        </div>
+                    `;
+                } else if (inp.type === 'select') {
+                    return `
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-1">${inp.label}</label>
+                            <select id="inp-${inp.name}" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs">
+                                ${inp.options.map(opt => `<option value="${opt.val}" ${inp.value === opt.val ? 'selected' : ''}>${opt.label}</option>`).join('')}
+                            </select>
+                        </div>
+                    `;
+                } else if (inp.type === 'image_upload') {
+                    return `
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-1">${inp.label}</label>
+                            <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900 border border-slate-800">
+                                <img id="crud-img-preview" src="${inp.value || 'https://placehold.co/100x100/1e293b/22c55e?text=Upload'}" class="w-14 h-14 object-cover rounded-lg border border-slate-700 bg-slate-950 shrink-0" alt="Preview">
+                                <div class="w-full space-y-1">
+                                    <input type="file" accept="image/*" onchange="previewCrudImageUpload(event)" class="block w-full text-xs text-slate-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-brand-600 file:text-white hover:file:bg-brand-500 file:cursor-pointer cursor-pointer">
+                                    <input type="hidden" id="inp-${inp.name}" value="${inp.value || ''}">
+                                    <p class="text-[9px] text-slate-500">Pilih berkas foto dari perangkat Anda.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-1">${inp.label}</label>
+                            <input type="${inp.type || 'text'}" id="inp-${inp.name}" value="${inp.value || ''}" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs" required>
+                        </div>
+                    `;
+                }
+            }).join('');
+
+            document.getElementById('crud-form-modal').classList.remove('hidden');
+        }
+
+        function closeCrudModal() {
+            document.getElementById('crud-form-modal').classList.add('hidden');
+        }
+
+        // CRUD OPENERS & HANDLERS
+        function openExpFormModal(id = null) {
+            const item = id ? appState.experiences.find(x => x.id === id) : null;
+            openCrudModal(id ? 'Edit Pengalaman' : 'Tambah Pengalaman', [
+                { label: 'Kategori', name: 'category', type: 'select', options: [{val:'pelatih', label:'Pelatih'}, {val:'pemain', label:'Pemain'}], value: item?item.category:'pelatih' },
+                { label: 'Periode / Tahun', name: 'period', value: item?item.period:'2022 - Sekarang' },
+                { label: 'Deskripsi Kegiatan', name: 'description', type: 'textarea', value: item?item.description:'' }
+            ], 'saveExp', id);
+        }
+
+        function editExpItem(id) { openExpFormModal(id); }
+        function deleteExpItem(id) {
+            if(confirm("Hapus data pengalaman ini?")) {
+                appState.experiences = appState.experiences.filter(x => x.id !== id);
+                syncDataToBackend('deleteExperience', { id: id }, () => {
+                    renderAllData();
+                    renderAdminLists();
+                });
+            }
+        }
+
+        function openAchFormModal(id = null) {
+            const item = id ? appState.achievements.find(x => x.id === id) : null;
+            openCrudModal(id ? 'Edit Prestasi' : 'Tambah Prestasi', [
+                { label: 'Tahun', name: 'year', value: item?item.year:'2026' },
+                { label: 'Judul Prestasi', name: 'title', value: item?item.title:'' },
+                { label: 'Deskripsi Detail', name: 'description', type: 'textarea', value: item?item.description:'' }
+            ], 'saveAch', id);
+        }
+        function editAchItem(id) { openAchFormModal(id); }
+        function deleteAchItem(id) {
+            if(confirm("Hapus prestasi ini?")) {
+                appState.achievements = appState.achievements.filter(x => x.id !== id);
+                syncDataToBackend('deleteAchievement', { id: id }, () => {
+                    renderAllData();
+                    renderAdminLists();
+                });
+            }
+        }
+
+        function openGalFormModal() {
+            openCrudModal('Tambah Foto Galeri', [
+                { label: 'Judul Foto', name: 'title', value: '' },
+                { label: 'Kategori', name: 'category', value: 'Kegiatan' },
+                { label: 'Pilih & Upload Gambar', name: 'image_url', type: 'image_upload', value: '' }
+            ], 'saveGal');
+        }
+        function deleteGalItem(id) {
+            if(confirm("Hapus foto ini?")) {
+                appState.gallery = appState.gallery.filter(x => x.id !== id);
+                syncDataToBackend('deleteGallery', { id: id }, () => {
+                    renderAllData();
+                    renderAdminLists();
+                });
+            }
+        }
+
+        function openCertFormModal() {
+            openCrudModal('Tambah Sertifikat', [
+                { label: 'Nama Sertifikat', name: 'cert_name', value: '' },
+                { label: 'Penerbit', name: 'issuer', value: 'PDBI' },
+                { label: 'Nomor Sertifikat', name: 'cert_number', value: '' },
+                { label: 'Tanggal / Periode', name: 'date', value: '' },
+                { label: 'Pilih & Upload Foto Sertifikat', name: 'image_url', type: 'image_upload', value: '' }
+            ], 'saveCert');
+        }
+        function deleteCertItem(id) {
+            if(confirm("Hapus sertifikat ini?")) {
+                appState.certificates = appState.certificates.filter(x => x.id !== id);
+                syncDataToBackend('deleteCertificate', { id: id }, () => {
+                    renderAllData();
+                    renderAdminLists();
+                });
+            }
+        }
+
+        function deleteMsgItem(id) {
+            if(confirm("Hapus pesan ini?")) {
+                appState.messages = appState.messages.filter(x => x.id !== id);
+                syncDataToBackend('deleteMessage', { id: id }, () => {
+                    renderAdminLists();
+                });
+            }
+        }
+
+        function handleCrudFormSubmit(e) {
+            e.preventDefault();
+            if(currentCrudType === 'saveExp') {
+                const data = {
+                    id: currentEditingId || ('exp-' + Date.now()),
+                    category: document.getElementById('inp-category').value,
+                    period: document.getElementById('inp-period').value,
+                    description: document.getElementById('inp-description').value
+                };
+                if(currentEditingId) {
+                    const idx = appState.experiences.findIndex(x => x.id === currentEditingId);
+                    if(idx !== -1) appState.experiences[idx] = data;
+                } else {
+                    appState.experiences.push(data);
+                }
+                syncDataToBackend('saveExperience', data, () => {
+                    renderAllData();
+                    renderAdminLists();
+                    closeCrudModal();
+                });
+            } else if(currentCrudType === 'saveAch') {
+                const data = {
+                    id: currentEditingId || ('ach-' + Date.now()),
+                    year: document.getElementById('inp-year').value,
+                    title: document.getElementById('inp-title').value,
+                    description: document.getElementById('inp-description').value
+                };
+                if(currentEditingId) {
+                    const idx = appState.achievements.findIndex(x => x.id === currentEditingId);
+                    if(idx !== -1) appState.achievements[idx] = data;
+                } else {
+                    appState.achievements.push(data);
+                }
+                syncDataToBackend('saveAchievement', data, () => {
+                    renderAllData();
+                    renderAdminLists();
+                    closeCrudModal();
+                });
+            } else if(currentCrudType === 'saveGal') {
+                const data = {
+                    id: 'gal-' + Date.now(),
+                    title: document.getElementById('inp-title').value,
+                    category: document.getElementById('inp-category').value,
+                    image_url: document.getElementById('inp-image_url').value
+                };
+                appState.gallery.push(data);
+                syncDataToBackend('saveGallery', data, () => {
+                    renderAllData();
+                    renderAdminLists();
+                    closeCrudModal();
+                });
+            } else if(currentCrudType === 'saveCert') {
+                const data = {
+                    id: 'cert-' + Date.now(),
+                    cert_name: document.getElementById('inp-cert_name').value,
+                    issuer: document.getElementById('inp-issuer').value,
+                    cert_number: document.getElementById('inp-cert_number').value,
+                    date: document.getElementById('inp-date').value,
+                    image_url: document.getElementById('inp-image_url').value
+                };
+                appState.certificates.push(data);
+                syncDataToBackend('saveCertificate', data, () => {
+                    renderAllData();
+                    renderAdminLists();
+                    closeCrudModal();
+                });
+            }
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-contact');
+            const msgObj = {
+                id: 'msg-' + Date.now(),
+                sender_name: document.getElementById('sender-name').value,
+                sender_contact: document.getElementById('sender-contact').value,
+                message: document.getElementById('sender-message').value,
+                timestamp: new Date().toLocaleString('id-ID')
+            };
+
+            btn.innerText = "Mengirim Pesan...";
+
+            if(IS_PREVIEW) {
+                setTimeout(() => {
+                    appState.messages.push(msgObj);
+                    btn.innerText = "Kirim Pesan Sekarang";
+                    alert("Pesan Anda berhasil terkirim kepada Pelatih!");
+                    document.getElementById('contact-form').reset();
+                }, 500);
+            } else {
+                syncDataToBackend('saveMessage', msgObj, () => {
+                    btn.innerText = "Kirim Pesan Sekarang";
+                    alert("Pesan Anda berhasil terkirim!");
+                    document.getElementById('contact-form').reset();
+                });
+            }
+        }
+
+        function syncDataToBackend(action, payload, callback) {
+            if(IS_PREVIEW) {
+                if(callback) callback();
+                return;
+            }
+
+            fetch(`${GAS_URL}?action=${action}`, {
+                method: 'POST',
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(res => {
+                if(res.status === 'success') {
+                    if(callback) callback();
+                } else {
+                    alert("Gagal sinkronisasi data: " + res.message);
+                }
+            })
+            .catch(err => {
+                console.error("Error syncing to backend:", err);
+                if(callback) callback();
+            });
+        }
+    </script>
+</body>
+</html>
