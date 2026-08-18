@@ -857,6 +857,128 @@
         let currentAdminTab = 'profile';
         let currentCrudType = '';
         let currentEditingId = null;
+        let crudListState = {};
+
+        function escapeAttr(str) {
+            return String(str == null ? '' : str)
+                .replace(/&/g, '&amp;')
+                .replace(/"/g, '&quot;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        // Splits a legacy single-paragraph description into separate points using sentence-ending
+        // periods, while avoiding false splits on abbreviations like "MB." "PT." "DB." "TNI."
+        // (short or all-caps tokens right before the period are treated as abbreviations, not sentence ends).
+        function smartSplitDescription(text) {
+            const raw = String(text || '').trim();
+            if (!raw) return [];
+            const parts = raw.split(/(?<=\.)\s+(?=[A-Z])/);
+            const merged = [];
+            for (const part of parts) {
+                if (merged.length === 0) {
+                    merged.push(part);
+                    continue;
+                }
+                const prevWords = merged[merged.length - 1].trim().split(/\s+/);
+                const lastToken = (prevWords[prevWords.length - 1] || '').replace(/[.)]+$/, '');
+                const letters = lastToken.replace(/[^A-Za-z]/g, '');
+                const isAbbrev = letters.length > 0 && letters.length <= 3 && letters === letters.toUpperCase();
+                if (isAbbrev) {
+                    merged[merged.length - 1] += ' ' + part;
+                } else {
+                    merged.push(part);
+                }
+            }
+            // Fold very short trailing fragments (e.g. "dll") into the previous point.
+            const result = [];
+            for (const m of merged) {
+                const trimmed = m.trim();
+                if (!trimmed) continue;
+                if (result.length > 0 && trimmed.split(/\s+/).length <= 1) {
+                    result[result.length - 1] += ' ' + trimmed;
+                } else {
+                    result.push(trimmed);
+                }
+            }
+            return result;
+        }
+
+        // Splits stored description text into an array of points: real "\n"-separated points
+        // (from the new list editor) take priority; otherwise falls back to smart sentence splitting
+        // for older, plain-paragraph entries.
+        function descriptionToPoints(desc) {
+            const lines = String(desc || '').split('\n').map(s => s.trim()).filter(Boolean);
+            if (lines.length > 1) return lines;
+            const smart = smartSplitDescription(lines[0] || '');
+            return smart.length > 0 ? smart : lines;
+        }
+
+        // Renders a multi-line description as a tidy numbered list instead of one long paragraph.
+        // Falls back to smart-splitting legacy paragraph text when no explicit "\n" points exist.
+        function renderDescriptionList(desc, wrapperClass) {
+            const points = descriptionToPoints(desc);
+            if (points.length === 0) return '';
+            if (points.length === 1) {
+                return `<p class="${wrapperClass}">${escapeAttr(points[0])}</p>`;
+            }
+            return `<ol class="${wrapperClass} list-decimal list-inside space-y-1">${points.map(l => `<li>${escapeAttr(l)}</li>`).join('')}</ol>`;
+        }
+
+        // ---- Dynamic "list" editor for description fields in the admin CRUD modal ----
+        function initListEditor(name, value) {
+            const points = descriptionToPoints(value);
+            crudListState[name] = points.length ? points : [''];
+            renderListEditor(name);
+        }
+
+        function renderListEditor(name) {
+            const container = document.getElementById('list-editor-' + name);
+            if (!container) return;
+            const items = crudListState[name] && crudListState[name].length ? crudListState[name] : [''];
+            container.innerHTML = items.map((val, i) => `
+                <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-bold text-slate-500 w-4 text-center shrink-0">${i + 1}.</span>
+                    <input type="text" value="${escapeAttr(val)}" oninput="updateDescPoint('${name}', ${i}, this.value)" placeholder="Tuliskan poin deskripsi..." class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-white text-xs focus:outline-none focus:border-brand-500 transition-colors">
+                    <button type="button" onclick="removeDescPoint('${name}', ${i})" class="text-rose-400 hover:text-rose-300 text-xs shrink-0 px-1.5 py-1.5" title="Hapus poin ini">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+            syncDescHiddenInput(name);
+        }
+
+        function updateDescPoint(name, idx, val) {
+            if (!crudListState[name]) crudListState[name] = [''];
+            crudListState[name][idx] = val;
+            syncDescHiddenInput(name);
+        }
+
+        function addDescPoint(name) {
+            if (!crudListState[name]) crudListState[name] = [];
+            crudListState[name].push('');
+            renderListEditor(name);
+            const container = document.getElementById('list-editor-' + name);
+            if (container) {
+                const inputs = container.querySelectorAll('input[type="text"]');
+                if (inputs.length) inputs[inputs.length - 1].focus();
+            }
+        }
+
+        function removeDescPoint(name, idx) {
+            if (!crudListState[name]) return;
+            if (crudListState[name].length <= 1) {
+                crudListState[name][idx] = '';
+            } else {
+                crudListState[name].splice(idx, 1);
+            }
+            renderListEditor(name);
+        }
+
+        function syncDescHiddenInput(name) {
+            const hidden = document.getElementById('inp-' + name);
+            if (hidden) hidden.value = (crudListState[name] || []).join('\n');
+        }
 
         window.addEventListener('DOMContentLoaded', () => {
             if (!IS_PREVIEW && GAS_URL && GAS_URL !== "URL_DEPLOY_GAS_ANDA_DISINI") {
@@ -936,9 +1058,7 @@
                         <span class="px-2.5 py-0.5 rounded-md bg-brand-500/10 text-brand-400 font-bold text-[11px] border border-brand-500/20 inline-block">
                             ${item.period}
                         </span>
-                        <p class="text-sm font-semibold text-slate-200 leading-relaxed">
-                            ${item.description}
-                        </p>
+                        ${renderDescriptionList(item.description, 'text-sm font-semibold text-slate-200 leading-relaxed')}
                     </div>
                 </div>
             `).join('');
@@ -955,7 +1075,7 @@
                         <i class="fa-solid fa-trophy text-amber-400 text-lg"></i>
                     </div>
                     <h3 class="text-base font-bold text-white">${ach.title}</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">${ach.description}</p>
+                    ${renderDescriptionList(ach.description, 'text-xs text-slate-400 leading-relaxed')}
                 </div>
             `).join('');
         }
@@ -1190,7 +1310,7 @@
                 <div class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between gap-4">
                     <div>
                         <span class="text-[10px] font-bold uppercase ${item.category==='pelatih'?'text-brand-500':'text-blue-400'}">[${item.category}] ${item.period}</span>
-                        <p class="text-xs text-white mt-1">${item.description}</p>
+                        ${renderDescriptionList(item.description, 'text-xs text-white mt-1')}
                     </div>
                     <div class="flex items-center gap-2">
                         <button onclick="editExpItem('${item.id}')" class="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 text-xs font-bold">Edit</button>
@@ -1211,7 +1331,7 @@
                         </div>
                     </div>
                     <h4 class="text-xs font-bold text-white">${item.title}</h4>
-                    <p class="text-[11px] text-slate-400">${item.description}</p>
+                    ${renderDescriptionList(item.description, 'text-[11px] text-slate-400')}
                 </div>
             `).join('');
 
@@ -1278,6 +1398,17 @@
                             <textarea id="inp-${inp.name}" rows="3" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs" required>${inp.value || ''}</textarea>
                         </div>
                     `;
+                } else if (inp.type === 'list') {
+                    return `
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-1">${inp.label}</label>
+                            <div id="list-editor-${inp.name}" class="space-y-2"></div>
+                            <button type="button" onclick="addDescPoint('${inp.name}')" class="mt-2 flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 transition-colors">
+                                <i class="fa-solid fa-circle-plus"></i> Tambah Poin
+                            </button>
+                            <input type="hidden" id="inp-${inp.name}">
+                        </div>
+                    `;
                 } else if (inp.type === 'select') {
                     return `
                         <div>
@@ -1311,6 +1442,14 @@
                 }
             }).join('');
 
+            // List-type fields (e.g. multi-point descriptions) need their editor rows
+            // populated after being inserted into the DOM above.
+            inputs.forEach(inp => {
+                if (inp.type === 'list') {
+                    initListEditor(inp.name, inp.value || '');
+                }
+            });
+
             document.getElementById('crud-form-modal').classList.remove('hidden');
         }
 
@@ -1324,7 +1463,7 @@
             openCrudModal(id ? 'Edit Pengalaman' : 'Tambah Pengalaman', [
                 { label: 'Kategori', name: 'category', type: 'select', options: [{val:'pelatih', label:'Pelatih'}, {val:'pemain', label:'Pemain'}], value: item?item.category:'pelatih' },
                 { label: 'Periode / Tahun', name: 'period', value: item?item.period:'2022 - Sekarang' },
-                { label: 'Deskripsi Kegiatan', name: 'description', type: 'textarea', value: item?item.description:'' }
+                { label: 'Deskripsi Kegiatan', name: 'description', type: 'list', value: item?item.description:'' }
             ], 'saveExp', id);
         }
 
@@ -1344,7 +1483,7 @@
             openCrudModal(id ? 'Edit Prestasi' : 'Tambah Prestasi', [
                 { label: 'Tahun', name: 'year', value: item?item.year:'2026' },
                 { label: 'Judul Prestasi', name: 'title', value: item?item.title:'' },
-                { label: 'Deskripsi Detail', name: 'description', type: 'textarea', value: item?item.description:'' }
+                { label: 'Deskripsi Detail', name: 'description', type: 'list', value: item?item.description:'' }
             ], 'saveAch', id);
         }
         function editAchItem(id) { openAchFormModal(id); }
